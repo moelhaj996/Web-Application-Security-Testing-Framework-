@@ -89,9 +89,31 @@ BURP_BASE_URL=http://localhost:8080
 
 ## Usage
 
-Run a security scan on a target URL:
+Basic usage:
 ```bash
-python src/main.py https://example.com
+python src/main.py https://target-website.com
+```
+
+Advanced usage with options:
+```bash
+python src/main.py https://target-website.com --output-dir ./reports --log-level DEBUG --scan-type full
+```
+
+Available command-line options:
+- `--output-dir`: Specify the directory for reports (default: ./reports)
+- `--log-level`: Set logging level (DEBUG, INFO, WARNING, ERROR)
+- `--scan-type`: Choose scan type (quick, standard, full)
+- `--exclude`: Exclude specific vulnerability types (comma-separated)
+- `--timeout`: Set scan timeout in minutes (default: 30)
+
+Example with multiple options:
+```bash
+python src/main.py https://target-website.com \
+    --output-dir ./custom_reports \
+    --log-level DEBUG \
+    --scan-type full \
+    --exclude "csrf,xss" \
+    --timeout 60
 ```
 
 The framework will:
